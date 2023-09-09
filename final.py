@@ -31,7 +31,7 @@ def FindAngle(pt1, pt2):
      return angle
 
 
-
+#reading the video and resizing it
 vid=cv.VideoCapture(0)
 vid.set(3, frameWidth) #sets width of frame as frameWidth(640)
 vid.set(4, frameHeight) #sets height of frame as frameHeight(480)
@@ -44,6 +44,7 @@ cv.createTrackbar("min", "Adjust", 110, 255, nothing)
 while True:
      ret ,frame = vid.read()
      frame = cv.resize(frame, (640,480), interpolation=cv.INTER_AREA)
+     #image processing
      cropped = frame[100:400,100:500]
      temp = cropped
      cropped = cv.cvtColor(cropped, cv.COLOR_BGR2GRAY)
@@ -52,7 +53,7 @@ while True:
      kernal = np.zeros([10,10],np.uint8)
      erode = cv.erode(threshold,kernal)
      cntrs,_=cv.findContours(threshold,cv.RETR_TREE,cv.CHAIN_APPROX_SIMPLE)
-
+     #detecting arrows
      for cnt in cntrs:
           area=cv.contourArea(cnt)
           if area>5000:  
@@ -73,7 +74,7 @@ while True:
                          pt2=imp[1]
                          Anglefromvertical=FindAngle(pt1, pt2)                                       
                          print(Anglefromvertical)
-                         cv.putText(temp, "Angle:"+str(Anglefromvertical), (frameWidth//4,frameHeight//4), cv.FONT_HERSHEY_COMPLEX,1.5,(0,0,0),2) #display angle
+                         cv.putText(temp, "Angle:"+str(Anglefromvertical), (frameWidth//4,frameHeight//4), cv.FONT_HERSHEY_COMPLEX,1.5,(255,255,0),2) #display angle
      cv.imshow('temp', temp)
      cv.imshow('processing', erode)
      if cv.waitKey(1) & 0xFF == ord('q'):
