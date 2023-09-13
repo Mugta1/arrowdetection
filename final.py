@@ -23,7 +23,6 @@ def FindAngle(pt1, pt2):
      x1=pt1[0]
      x2=pt2[0]
      
-
      angRadians = math.asin((y1-y2)/((((x1-x2)**2)+((y1-y2)**2))**0.5)) #mathematical formula
 
      angle = round(math.degrees(angRadians)) #convert angle from radians to degrees
@@ -64,7 +63,7 @@ while True:
             if objCor==7:
                hull = cv.convexHull(approx, returnPoints=True)
                x,y,w,h=cv.boundingRect(approx)
-               cv.rectangle(temp,(x,y),(x+w,y+h),(0,255,255),4)
+               cv.rectangle(temp,(x,y),(x+w,y+h),(0,0,255),4)
                difference = [x for x in approx if x not in hull]
                if len(difference)>=1:
                         
@@ -74,16 +73,11 @@ while True:
                          pt2=imp[1]
                          Anglefromvertical=FindAngle(pt1, pt2)                                       
                          print(Anglefromvertical)
-                         cv.putText(temp, "Angle:"+str(Anglefromvertical), (frameWidth//4,frameHeight//4), cv.FONT_HERSHEY_COMPLEX,1.5,(255,255,0),2) #display angle
+                         cv.putText(temp, "Angle:"+str(Anglefromvertical), (frameWidth//4,frameHeight//4), cv.FONT_HERSHEY_COMPLEX,1.0,(255,255,0),2) #display angle
      cv.imshow('temp', temp)
      cv.imshow('processing', erode)
      if cv.waitKey(1) & 0xFF == ord('q'):
           break
      
 vid.release()
-cv.destroyAllWindows()
-               
-                    
-               
-               
-                
+cv.destroyAllWindows() 
