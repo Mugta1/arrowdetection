@@ -44,9 +44,4 @@ This Python script utilizes the OpenCV library to detect arrows in a video feed 
 ### Acknowledgments
 
 - This script is inspired by various tutorials and examples available online for OpenCV-based object detection.
-- Credits to the OpenCV community for providing extensive documentation and resources.#Warning
-
-
-### License
-
-This project is licensed under the [MIT License](LICENSE). Feel free to modify and distribute it for educational and non-commercial purposes.
+- Credits to the OpenCV community for providing extensive documentation and resources.
